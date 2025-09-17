@@ -1,6 +1,8 @@
-import { useState } from "react";
 
-const API_BASE = "http://localhost:5000/api"; // backend base URL
+import { useState } from "react";
+import GoogleOAuth from "../components/GoogleOAuth";
+
+const API_BASE = "http://localhost:5000/api";
 
 export default function Signup() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -38,6 +40,17 @@ export default function Signup() {
   return (
     <div style={{ padding: 20 }}>
       <h2>Sign Up</h2>
+      
+      {/* Google Sign-In Button */}
+      <div style={{ marginBottom: 20 }}>
+        <GoogleOAuth />
+      </div>
+      
+      <div style={{ margin: "20px 0", textAlign: "center" }}>
+        <strong>OR</strong>
+      </div>
+      
+      {/* Regular Signup Form */}
       <form onSubmit={onSubmit}>
         <input
           name="name"

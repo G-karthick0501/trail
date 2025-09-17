@@ -1,5 +1,7 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import GoogleOAuth from "../components/GoogleOAuth";
 
 const API_BASE = "http://localhost:5000/api";
 
@@ -30,7 +32,6 @@ export default function Login() {
         setMsg(data.msg || "Error");
         return;
       }
-      // Save token + user and go to dashboard
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
       navigate("/dashboard");
@@ -42,6 +43,17 @@ export default function Login() {
   return (
     <div style={{ padding: 20 }}>
       <h2>Login</h2>
+      
+      {/* Google Sign-In Button */}
+      <div style={{ marginBottom: 20 }}>
+        <GoogleOAuth />
+      </div>
+      
+      <div style={{ margin: "20px 0", textAlign: "center" }}>
+        <strong>OR</strong>
+      </div>
+      
+      {/* Regular Login Form */}
       <form onSubmit={onSubmit}>
         <input
           name="email"
